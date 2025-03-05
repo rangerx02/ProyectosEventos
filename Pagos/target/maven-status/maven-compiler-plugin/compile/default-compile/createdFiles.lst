@@ -1,0 +1,6 @@
+com\mycompany\pagos\Main.class
+com\mycompany\pagos\PaymentSelector.class
+com\mycompany\pagos\Payment.class
+com\mycompany\pagos\PayPalPayment.class
+com\mycompany\pagos\CreditCardPayment.class
+com\mycompany\pagos\PaymentProcessor.class
