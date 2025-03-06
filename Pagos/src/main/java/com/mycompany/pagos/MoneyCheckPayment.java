@@ -4,6 +4,8 @@
  */
 package com.mycompany.pagos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gfmt
@@ -12,7 +14,13 @@ package com.mycompany.pagos;
 class MoneyCheckPayment implements Payment {
     @Override
     public String pay(double amount) {
-        return "Pagado " + amount + " usando un Cheque.";
+        double checkAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor del cheque:"));
+        if (amount < checkAmount * 0.1) {            
+            return "El monto de la compra debe ser al menos el 10% del valor del cheque.";            
+        }
+        double change = checkAmount - amount;
+        return "Pago con cheque realizado. Monto: " + amount + ", Cheque: " + checkAmount + ", Cambio: " + change;
+        //return "Pagado " + amount + " usando un Cheque.";
     }    
 }
 

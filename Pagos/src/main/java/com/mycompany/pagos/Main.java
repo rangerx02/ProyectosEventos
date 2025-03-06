@@ -29,6 +29,9 @@ public class Main {
 
         // Procesar el pago con el método seleccionado
         String result = paymentMethod.pay(amount);
+        
+        // Mostrar la animación correspondiente
+        PaymentAnimation.showAnimation(paymentMethod);
 
         // Mostrar el resultado del pago en un cuadro de mensaje
         JOptionPane.showMessageDialog(null, result);

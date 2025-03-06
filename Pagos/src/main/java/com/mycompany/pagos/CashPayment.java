@@ -4,6 +4,8 @@
  */
 package com.mycompany.pagos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gfmt
@@ -13,6 +15,9 @@ package com.mycompany.pagos;
 class CashPayment implements Payment {
     @Override
     public String pay(double amount) {
-        return "Pagado " + amount + " usando Dinero Efectivo.";
+        double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto entregado:"));
+        double change = givenAmount - amount;
+        return "Pago en efectivo realizado. Monto: " + amount + ", Entregado: " + givenAmount + ", Cambio: " + change;
+        //return "Pagado " + amount + " usando Dinero Efectivo.";
     } 
 }

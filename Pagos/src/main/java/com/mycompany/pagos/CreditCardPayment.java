@@ -12,8 +12,9 @@ package com.mycompany.pagos;
 //Clase de pago con Tarjeta Credito
 class CreditCardPayment implements Payment {
     @Override
-    public String pay(double amount) {
+    public String pay(double amount) {        
         return "Pagado " + amount + " usando tarjeta de crédito.";
     }
 }
+
 

@@ -16,4 +16,3 @@ class DebitCardPayment implements Payment {
         return "Pagado " + amount + " usando tarjeta de debito.";
     }    
 }
-
