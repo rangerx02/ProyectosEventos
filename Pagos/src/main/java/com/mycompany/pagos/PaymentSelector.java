@@ -10,6 +10,26 @@ package com.mycompany.pagos;
  */
 import javax.swing.JOptionPane;
 
+// Selector de método de pago con posibilidad de mezcla
+class PaymentSelector {
+    public static Payment selectPaymentMethod() {
+        String[] options = {"Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito", "Cheque", "Mezcla"};
+        int choice = JOptionPane.showOptionDialog(null, "Seleccione el método de pago:", "Método de Pago", 
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        
+        switch (choice) {
+            case 0: return new CashPayment();
+            case 1: return new CreditCardPayment();
+            case 2: return new DebitCardPayment();
+            case 3: return new MoneyCheckPayment();
+            case 4: return new MixedPayment();
+            default: return new CashPayment();
+        }
+    }
+}
+
+
+/*
 public class PaymentSelector {
     
     // Método para seleccionar el tipo de pago
@@ -48,21 +68,4 @@ public class PaymentSelector {
     }
 }
 
-/*
-// Selector de método de pago
-class PaymentSelector {
-    public static Payment selectPaymentMethod() {
-        String[] options = {"Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito", "Cheque"};
-        int choice = JOptionPane.showOptionDialog(null, "Seleccione el método de pago:", "Método de Pago", 
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        
-        switch (choice) {
-            case 0: return new CashPayment();
-            case 1: return new CreditCardPayment();
-            case 2: return new DebitCardPayment();
-            case 3: return new CheckPayment();
-            default: return new CashPayment();
-        }
-    }
-}
 */
