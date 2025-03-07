@@ -18,8 +18,9 @@ public class Main {
         PaymentProcessor processor = new PaymentProcessor();
         
         while (remainingAmount > 0) {
+            String message = "Saldo pendiente: " + remainingAmount + "\nSeleccione un método de pago:";
             String[] options = {"Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito", "Cheque", "PayPal", "Cancelar"};
-            int option = JOptionPane.showOptionDialog(null, "Saldo pendiente: " + remainingAmount + "\nSeleccione un método de pago:", "Método de Pago",
+            int option = JOptionPane.showOptionDialog(null, message, "Método de Pago",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             
             if (option == 5 || option == JOptionPane.CLOSED_OPTION) {
@@ -30,27 +31,34 @@ public class Main {
             switch (option) {
                 case 0:
                     CashPayment cashPayment = new CashPayment();
-                    remainingAmount -= processor.processCashPayment(cashPayment, remainingAmount);
+                    double cashUsed = processor.processCashPayment(cashPayment, remainingAmount);
+                    remainingAmount -= cashUsed;
+                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
                     break;
                 case 1:
-                    double cardAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta:");
-                    if (cardAmount == -1) continue;
-                    remainingAmount -= processor.processCardPayment(cardAmount);
-                    break;
                 case 2:
-                    double debitAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta de débito:");
-                    if (debitAmount == -1) continue;
-                    remainingAmount -= processor.processCardPayment(debitAmount);
+                    int confirm = JOptionPane.showConfirmDialog(null, "¿Desea pagar el saldo restante en su totalidad?", "Pago con tarjeta", JOptionPane.YES_NO_OPTION);
+                    double cardAmount;
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        cardAmount = remainingAmount;
+                    } else {
+                        cardAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta:");
+                        if (cardAmount == -1) continue;
+                    }
+                    remainingAmount -= processor.processCardPayment(cardAmount);
+                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
                     break;
                 case 3:
                     double checkAmount = obtenerMontoPago("Ingrese el monto a pagar con cheque:");
                     if (checkAmount == -1) continue;
                     remainingAmount -= processor.processCheckPayment(checkAmount, remainingAmount);
+                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
                     break;
                 case 4:
                     double paypalAmount = obtenerMontoPago("Ingrese el monto a pagar con PayPal:");
                     if (paypalAmount == -1) continue;
                     remainingAmount -= processor.processPayPalPayment(paypalAmount, remainingAmount);
+                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
                     break;
             }
         }
@@ -81,4 +89,3 @@ public class Main {
         }
     }
 }
-
