@@ -7,6 +7,8 @@ package com.mycompany.pagos;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.net.URL;
+//Gean Franco Muñoz Toro - 2266833-2724
+//Julián David Bedoya Arango - 2160535-2724
 /**
  *
  * @author Gfmt

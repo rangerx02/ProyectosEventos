@@ -6,6 +6,8 @@ package com.mycompany.pagos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+//Gean Franco Muñoz Toro - 2266833-2724
+//Julián David Bedoya Arango - 2160535-2724
 
 /**
  *
