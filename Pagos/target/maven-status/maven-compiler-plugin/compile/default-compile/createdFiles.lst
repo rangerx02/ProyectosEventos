@@ -1,9 +1,9 @@
-com\mycompany\pagos\Main.class
-com\mycompany\pagos\CreditCardPayment.class
-com\mycompany\pagos\CashPayment.class
 com\mycompany\pagos\Payment.class
-com\mycompany\pagos\PayPalPayment.class
 com\mycompany\pagos\DebitCardPayment.class
 com\mycompany\pagos\MoneyCheckPayment.class
 com\mycompany\pagos\PaymentAnimation.class
+com\mycompany\pagos\Main.class
+com\mycompany\pagos\CreditCardPayment.class
+com\mycompany\pagos\CashPayment.class
+com\mycompany\pagos\PayPalPayment.class
 com\mycompany\pagos\PaymentProcessor.class
