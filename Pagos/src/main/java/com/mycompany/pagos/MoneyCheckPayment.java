@@ -12,14 +12,49 @@ import javax.swing.JOptionPane;
  */
 //Clase de pago Como Cheque con dinero
 class MoneyCheckPayment implements Payment {
+    private double checkAmount;
+    
+    public MoneyCheckPayment() {
+        while (true) {
+            try {
+                String input = JOptionPane.showInputDialog("Ingrese el valor del cheque:");
+                if (input == null) {
+                    this.checkAmount = -1; // Indica cancelación
+                    return;
+                }
+                this.checkAmount = Double.parseDouble(input);
+                if (this.checkAmount > 0) {
+                    return;
+                }
+                JOptionPane.showMessageDialog(null, "Valor del cheque inválido. Debe ser mayor que cero.", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valor del cheque inválido. Ingrese un número válido.", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
     @Override
     public String pay(double amount) {
-        double checkAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor del cheque:"));
-        if (amount < checkAmount * 0.1) {            
-            return "El monto de la compra debe ser al menos el 10% del valor del cheque.";            
+        if (checkAmount <= 0) {
+            return "Operación cancelada.";
         }
+        
+        if (amount < checkAmount * 0.1) {            
+            return "ERROR: El monto de la compra debe ser al menos el 10% del valor del cheque.";            
+        }
+        
         double change = checkAmount - amount;
         return "Pago con cheque realizado. Monto: " + amount + ", Cheque: " + checkAmount + ", Cambio: " + change;
-    }    
+    }
+    
+    public double getCheckAmount() {
+        return checkAmount;
+    }
+    
+    public boolean isValid() {
+        return checkAmount > 0;
+    }
 }
 

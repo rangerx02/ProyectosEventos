@@ -80,11 +80,28 @@ public class Main {
                     break;
                 case 3:
                     MoneyCheckPayment checkPayment = new MoneyCheckPayment();
+                    //Si el usuario canceló la operación, continuar con el siguiente ciclo
+                    if (!checkPayment.isValid()) {
+                        continue;
+                    }
+                    //Procesar el pago con cheque
+                    double processedAmount = processor.processCheckPayment(checkPayment, remainingAmount);
+                    
+                    if (processedAmount > 0) {
+                        //Si el pago fue exitoso, restar del monto pendiente y mostrar animación
+                        remainingAmount -= processedAmount;
+                        PaymentAnimation.showAnimation(checkPayment);
+                    }
+                    break;
+                    
+                    /*
+                    MoneyCheckPayment checkPayment = new MoneyCheckPayment();
                     double checkAmount = obtenerMontoPago("Ingrese el monto a pagar con cheque:");
                     if (checkAmount == -1) continue;
                     remainingAmount -= processor.processCheckPayment(checkAmount, remainingAmount);
                     PaymentAnimation.showAnimation(checkPayment);
                     break;
+                    */
                 case 4:
                     PayPalPayment paypalPayment = new PayPalPayment();
                     double paypalAmount = obtenerMontoPago("Ingrese el monto a pagar con PayPal:");
