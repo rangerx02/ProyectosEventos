@@ -10,13 +10,16 @@ import javax.swing.JOptionPane;
  *
  * @author Gfmt
  */
-
-//Clase de pago en dinero efectivo
+// Clase de pago en dinero efectivo
 class CashPayment implements Payment {
     @Override
     public String pay(double amount) {
-        double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto entregado:"));
+        double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad entregada: "));
+        if (givenAmount < amount) {
+            return "Monto insuficiente. Falta: " + (amount - givenAmount);
+        }
         double change = givenAmount - amount;
-        return "Pago en efectivo realizado. Monto: " + amount + ", Entregado: " + givenAmount + ", Cambio: " + change;
-    } 
+        return "Pago exitoso. Entregado: " + givenAmount + ", Cambio: " + change + ", Monto inicial: " + amount;
+    }
 }
+

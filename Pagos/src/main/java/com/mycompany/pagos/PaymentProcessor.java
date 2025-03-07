@@ -14,11 +14,14 @@ import java.util.List;
 public class PaymentProcessor {
     private List<String> paymentSummary = new ArrayList<>();
 
-    public double processCashPayment(double amount, double remainingAmount) {
-        double usedAmount = Math.min(amount, remainingAmount);
-        double change = amount - usedAmount;
-        paymentSummary.add("Efectivo: " + usedAmount + (change > 0 ? " (Cambio: " + change + ")" : ""));
-        return usedAmount;
+    public double processCashPayment(double givenAmount, double totalAmount) {
+        if (givenAmount < totalAmount) {
+            paymentSummary.add("Pago insuficiente. Falta: " + (totalAmount - givenAmount));
+            return 0;
+        }
+        double change = givenAmount - totalAmount;
+        paymentSummary.add("Efectivo: " + givenAmount + " (Cambio: " + change + ")");
+        return givenAmount;
     }
 
     public double processCardPayment(double amount) {
