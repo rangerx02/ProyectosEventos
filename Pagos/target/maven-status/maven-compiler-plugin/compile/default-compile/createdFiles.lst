@@ -1,7 +1,5 @@
 com\mycompany\pagos\Main.class
-com\mycompany\pagos\PaymentSelector.class
 com\mycompany\pagos\CreditCardPayment.class
-com\mycompany\pagos\MixedPayment.class
 com\mycompany\pagos\CashPayment.class
 com\mycompany\pagos\Payment.class
 com\mycompany\pagos\PayPalPayment.class

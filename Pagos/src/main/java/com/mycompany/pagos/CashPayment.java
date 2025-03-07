@@ -12,6 +12,23 @@ import javax.swing.JOptionPane;
  */
 // Clase de pago en dinero efectivo
 class CashPayment implements Payment {
+    private double givenAmount;
+
+    public CashPayment() {
+        this.givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad entregada: "));
+    }
+
+    @Override
+    public String pay(double amount) {
+        return "Pago en efectivo registrado: " + givenAmount;
+    }
+
+    public double getGivenAmount() {
+        return givenAmount;
+    }
+}
+/*
+class CashPayment implements Payment {
     @Override
     public String pay(double amount) {
         double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad entregada: "));
@@ -23,3 +40,4 @@ class CashPayment implements Payment {
     }
 }
 
+*/
