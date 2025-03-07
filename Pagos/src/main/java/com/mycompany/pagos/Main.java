@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class Main {
     public static void main(String[] args) {
         double totalAmount = obtenerMontoInicial();
-        if (totalAmount == -1) return;
+        if (totalAmount == -1) return; // Si el usuario cancela, salir
         
         double remainingAmount = totalAmount;
         PaymentProcessor processor = new PaymentProcessor();
@@ -29,12 +29,12 @@ public class Main {
             }
             
             switch (option) {
-                case 0:
+                case 0:// Efectivo
                     CashPayment cashPayment = new CashPayment();
                     double cashUsed = processor.processCashPayment(cashPayment, remainingAmount);
                     remainingAmount -= cashUsed;
                     PaymentAnimation.showAnimation(cashPayment);
-                    break;
+                    break;                
                 case 1:
                     CreditCardPayment creditCardPayment = new CreditCardPayment();
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Desea pagar el saldo restante en su totalidad?", "Pago con tarjeta", JOptionPane.YES_NO_OPTION);
