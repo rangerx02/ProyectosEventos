@@ -33,10 +33,10 @@ public class Main {
                     CashPayment cashPayment = new CashPayment();
                     double cashUsed = processor.processCashPayment(cashPayment, remainingAmount);
                     remainingAmount -= cashUsed;
-                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
+                    PaymentAnimation.showAnimation(cashPayment);
                     break;
                 case 1:
-                case 2:
+                    CreditCardPayment creditCardPayment = new CreditCardPayment();
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Desea pagar el saldo restante en su totalidad?", "Pago con tarjeta", JOptionPane.YES_NO_OPTION);
                     double cardAmount;
                     if (confirm == JOptionPane.YES_OPTION) {
@@ -46,21 +46,36 @@ public class Main {
                         if (cardAmount == -1) continue;
                     }
                     remainingAmount -= processor.processCardPayment(cardAmount);
-                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
+                    PaymentAnimation.showAnimation(creditCardPayment);
+                    break;
+                case 2:
+                    DebitCardPayment debitCardPayment = new DebitCardPayment();
+                    confirm = JOptionPane.showConfirmDialog(null, "¿Desea pagar el saldo restante en su totalidad?", "Pago con tarjeta", JOptionPane.YES_NO_OPTION);
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        cardAmount = remainingAmount;
+                    } else {
+                        cardAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta:");
+                        if (cardAmount == -1) continue;
+                    }
+                    remainingAmount -= processor.processCardPayment(cardAmount);
+                    PaymentAnimation.showAnimation(debitCardPayment);
                     break;
                 case 3:
+                    MoneyCheckPayment checkPayment = new MoneyCheckPayment();
                     double checkAmount = obtenerMontoPago("Ingrese el monto a pagar con cheque:");
                     if (checkAmount == -1) continue;
                     remainingAmount -= processor.processCheckPayment(checkAmount, remainingAmount);
-                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
+                    PaymentAnimation.showAnimation(checkPayment);
                     break;
                 case 4:
+                    PayPalPayment paypalPayment = new PayPalPayment();
                     double paypalAmount = obtenerMontoPago("Ingrese el monto a pagar con PayPal:");
                     if (paypalAmount == -1) continue;
                     remainingAmount -= processor.processPayPalPayment(paypalAmount, remainingAmount);
-                    JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
+                    PaymentAnimation.showAnimation(paypalPayment);
                     break;
             }
+            JOptionPane.showMessageDialog(null, "Saldo actualizado: " + remainingAmount);
         }
         JOptionPane.showMessageDialog(null, "Pago completado.\nMonto inicial: " + totalAmount + "\nResumen:\n" + processor.getSummary());
     }
@@ -89,3 +104,4 @@ public class Main {
         }
     }
 }
+
