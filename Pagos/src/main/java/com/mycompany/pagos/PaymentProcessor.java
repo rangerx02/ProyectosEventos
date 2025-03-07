@@ -16,16 +16,20 @@ public class PaymentProcessor {
 
     public double processCashPayment(CashPayment cashPayment, double remainingAmount) {
         double givenAmount = cashPayment.getGivenAmount();
+        double usedAmount;
+        
         if (givenAmount < remainingAmount) {
-            paymentSummary.add("Pago insuficiente. Falta: " + (remainingAmount - givenAmount));
-            return 0;
+            usedAmount = givenAmount;
+            paymentSummary.add("Efectivo: " + givenAmount + " (Pago insuficiente. Falta: " + (remainingAmount - givenAmount) + ")");
+        } else {
+            usedAmount = remainingAmount;
+            double change = givenAmount - remainingAmount;
+            paymentSummary.add("Efectivo: " + givenAmount + " (Cambio: " + change + ")");
         }
-        double usedAmount = Math.min(givenAmount, remainingAmount);
-        double change = givenAmount > remainingAmount ? givenAmount - remainingAmount : 0;
-        paymentSummary.add("Efectivo: " + givenAmount + " (Cambio: " + change + ")");
         return usedAmount;
     }
-
+    
+ 
     public double processCardPayment(double amount) {
         paymentSummary.add("Tarjeta: " + amount);
         return amount;

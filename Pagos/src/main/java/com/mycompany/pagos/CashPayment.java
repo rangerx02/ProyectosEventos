@@ -27,17 +27,3 @@ class CashPayment implements Payment {
         return givenAmount;
     }
 }
-/*
-class CashPayment implements Payment {
-    @Override
-    public String pay(double amount) {
-        double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la cantidad entregada: "));
-        if (givenAmount < amount) {
-            return "Monto insuficiente. Falta: " + (amount - givenAmount);
-        }
-        double change = givenAmount - amount;
-        return "Pago exitoso. Entregado: " + givenAmount + ", Cambio: " + change + ", Monto inicial: " + amount;
-    }
-}
-
-*/

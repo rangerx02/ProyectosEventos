@@ -28,13 +28,31 @@ public class Main {
                 return;
             }
             
-            switch (option) {
-                case 0:// Efectivo
-                    CashPayment cashPayment = new CashPayment();
-                    double cashUsed = processor.processCashPayment(cashPayment, remainingAmount);
+            switch (option) {                             
+                case 0: // Efectivo
+                CashPayment cashPayment = new CashPayment();
+                double cashUsed = processor.processCashPayment(cashPayment, remainingAmount);
+                double change = cashPayment.getGivenAmount() - cashUsed;
+                
+                if (cashUsed > 0) {
                     remainingAmount -= cashUsed;
-                    PaymentAnimation.showAnimation(cashPayment);
-                    break;                
+                    if (change > 0) {
+                        JOptionPane.showMessageDialog(null, 
+                                
+                                "Pago aplicado: " + cashUsed + 
+                                "\nCantidad entregada: " + cashPayment.getGivenAmount() + 
+                                "\nCambio a devolver: " + change);
+                    } else if (cashUsed < remainingAmount) {
+                        JOptionPane.showMessageDialog(null, 
+                                "Pago parcial aplicado: " + cashUsed +
+                                "\nSaldo restante: " + (remainingAmount + cashUsed - cashUsed));
+                    } else {
+                        JOptionPane.showMessageDialog(null, 
+                                "Pago completo aplicado: " + cashUsed);
+                    }
+                }
+                PaymentAnimation.showAnimation(cashPayment);
+                break;
                 case 1:
                     CreditCardPayment creditCardPayment = new CreditCardPayment();
                     int confirm = JOptionPane.showConfirmDialog(null, "¿Desea pagar el saldo restante en su totalidad?", "Pago con tarjeta", JOptionPane.YES_NO_OPTION);
