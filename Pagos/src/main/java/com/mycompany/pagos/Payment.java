@@ -10,7 +10,6 @@ package com.mycompany.pagos;
  */
 // Definimos la interfaz Payment
 public interface Payment {
-    //void pay(double amount);
     String pay(double amount); //devuelve un string con el resultado
 }
 

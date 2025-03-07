@@ -20,7 +20,6 @@ class MoneyCheckPayment implements Payment {
         }
         double change = checkAmount - amount;
         return "Pago con cheque realizado. Monto: " + amount + ", Cheque: " + checkAmount + ", Cambio: " + change;
-        //return "Pagado " + amount + " usando un Cheque.";
     }    
 }
 

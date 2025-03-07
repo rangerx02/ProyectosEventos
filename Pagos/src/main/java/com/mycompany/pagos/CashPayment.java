@@ -18,6 +18,5 @@ class CashPayment implements Payment {
         double givenAmount = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto entregado:"));
         double change = givenAmount - amount;
         return "Pago en efectivo realizado. Monto: " + amount + ", Entregado: " + givenAmount + ", Cambio: " + change;
-        //return "Pagado " + amount + " usando Dinero Efectivo.";
     } 
 }

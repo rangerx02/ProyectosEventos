@@ -46,28 +46,3 @@ public class PaymentProcessor {
         return String.join("\n", paymentSummary);
     }
 }
-
-
-
-
-
-/*
-public class PaymentProcessor {
-    private Payment paymentMethod;
-
-    // Método para seleccionar el tipo de pago
-    public void setPaymentMethod(Payment paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    // Método para realizar el pago
-    public void processPayment(double amount) {
-        if (paymentMethod != null) {
-            paymentMethod.pay(amount);
-        } else {
-            System.out.println("Método de pago no seleccionado.");
-        }
-    }
-}
-*/
-
