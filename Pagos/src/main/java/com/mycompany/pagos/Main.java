@@ -63,7 +63,7 @@ public class Main {
                         cardAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta:");
                         if (cardAmount == -1) continue;
                     }
-                    remainingAmount -= processor.processCardPayment(cardAmount);
+                    remainingAmount -= processor.processCardPayment(cardAmount, "Tarjeta de Crédito");            
                     PaymentAnimation.showAnimation(creditCardPayment);
                     break;
                 case 2:
@@ -75,7 +75,7 @@ public class Main {
                         cardAmount = obtenerMontoPago("Ingrese el monto a pagar con tarjeta:");
                         if (cardAmount == -1) continue;
                     }
-                    remainingAmount -= processor.processCardPayment(cardAmount);
+                    remainingAmount -= processor.processCardPayment(cardAmount, "Tarjeta de Débito");                    
                     PaymentAnimation.showAnimation(debitCardPayment);
                     break;
                 case 3:

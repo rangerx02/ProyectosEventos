@@ -30,8 +30,8 @@ public class PaymentProcessor {
     }
     
  
-    public double processCardPayment(double amount) {
-        paymentSummary.add("Tarjeta: " + amount);
+    public double processCardPayment(double amount, String cardType) {
+        paymentSummary.add(cardType + ": " + amount);
         return amount;
     }
 
